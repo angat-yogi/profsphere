@@ -7,18 +7,19 @@ import { MatButtonModule } from '@angular/material/button';
   selector: 'app-auth-button',
   standalone: true,
   imports: [CommonModule, MatButtonModule],
-  template: `
-    <ng-container *ngIf="auth.isAuthenticated$ | async as loggedIn">
-      <button mat-raised-button color="primary" *ngIf="!loggedIn" (click)="auth.loginWithRedirect()">Sign In</button>
-      <button mat-raised-button color="warn" *ngIf="loggedIn" (click)="logout()">Sign Out</button>
-    </ng-container>
-  `,
+  templateUrl: './auth-button.html',
+  styleUrls: ['./auth-button.css'],
 })
-export class AuthButtonComponent {
+export class AuthButton {
   returnTo = window.location.origin;
 
-  constructor(public auth: AuthService) {}
-
+  constructor(public auth: AuthService) {
+    this.auth.isLoading$.subscribe(val => console.log('⏳ isLoading$', val));
+    this.auth.isAuthenticated$.subscribe(val => console.log('✅ isAuthenticated$', val));
+    this.auth.error$.subscribe(err => {
+      if (err) console.error('❌ Auth0 Error:', err);
+    });
+  }
   logout(): void {
     this.auth.logout({ logoutParams: { returnTo: this.returnTo } });
   }

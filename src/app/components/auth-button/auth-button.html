@@ -1,0 +1,5 @@
+
+    <ng-container *ngIf="auth.isAuthenticated$ | async as loggedIn">
+      <button mat-raised-button color="primary" *ngIf="!loggedIn" (click)="auth.loginWithRedirect()">Sign In</button>
+      <button mat-raised-button color="warn" *ngIf="loggedIn" (click)="logout()">Sign Out</button>
+    </ng-container>

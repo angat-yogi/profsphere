@@ -1,14 +1,27 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, effect } from '@angular/core';
+import { AuthService } from '@auth0/auth0-angular';
 import { RouterOutlet } from '@angular/router';
-import { AuthButtonComponent } from './components/auth-button/auth-button.component';
+import { AuthButton } from './components/auth-button/auth-button';
+import { UserProfile } from './components/user-profile/user-profile';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, AuthButtonComponent],
+  imports: [RouterOutlet, AuthButton, UserProfile],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
 export class App {
-  protected readonly title = signal('profsphere');
+  private auth = inject(AuthService);
+  title = 'Profsphere';
+  constructor() {
+    
+    effect(() => {
+      this.auth.isAuthenticated$.subscribe((loggedIn) => {
+        if (!loggedIn) {
+          this.auth.loginWithRedirect(); // 👈 automatic redirect to Auth0
+        }
+      });
+    });
+  }
 }
