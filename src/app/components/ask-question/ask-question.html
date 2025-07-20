@@ -1,0 +1,19 @@
+<h2>Ask a Question</h2>
+
+<input
+  type="text"
+  [(ngModel)]="question"
+  placeholder="Enter your question"
+  class="question-input"
+/>
+
+<button
+  (click)="ask()"
+  [disabled]="loading || !question.trim()"
+  class="ask-button"
+>
+  Ask
+</button>
+
+<p *ngIf="loading">🤖 Thinking...</p>
+<p *ngIf="answer">💬 {{ answer }}</p>
