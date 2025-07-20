@@ -1,0 +1,35 @@
+<div class="post-container">
+    <h2>Create New Post</h2>
+  
+    <form (ngSubmit)="submitPost()" #postForm="ngForm" class="post-form">
+      <textarea
+        [(ngModel)]="content"
+        name="content"
+        placeholder="What's on your mind?"
+        required
+      ></textarea>
+  
+      <input
+        [(ngModel)]="tags"
+        name="tags"
+        placeholder="Tags (comma separated)"
+        type="text"
+      />
+  
+      <select [(ngModel)]="visibility" name="visibility">
+        <option value="public">Public</option>
+        <option value="private">Private</option>
+        <option value="followers">Followers Only</option>
+      </select>
+  
+      <input type="file" multiple (change)="handleImageUpload($event)" />
+  
+      <div class="preview" *ngIf="previewImages.length">
+        <img *ngFor="let img of previewImages" [src]="img" />
+      </div>
+  
+      <button type="submit">Post</button>
+  
+      <p *ngIf="status" class="status-message">{{ status }}</p>
+    </form>
+  </div>

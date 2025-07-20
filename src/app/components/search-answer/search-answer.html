@@ -1,0 +1,15 @@
+<input [(ngModel)]="search" placeholder="Search past answers..." />
+<button (click)="onSearch()">Search</button>
+
+<div *ngIf="loading">Searching...</div>
+
+<ul *ngIf="matches.length">
+  <li *ngFor="let m of matches">{{ m.answer }}</li>
+</ul>
+
+<div *ngIf="noResults">
+  <p>No matches found.</p>
+  <button>Ask Expert AI</button>
+  <button>Ask Expert 1</button>
+  <button>Ask Expert 2</button>
+</div>

@@ -1,0 +1,20 @@
+<h2>Become an Expert</h2>
+
+<form (ngSubmit)="submitRequest()" #expertForm="ngForm">
+  <textarea
+    [(ngModel)]="bio"
+    name="bio"
+    placeholder="Describe your expertise..."
+    required
+    rows="5"
+    style="width: 100%; padding: 0.5rem; font-size: 1rem;"
+  ></textarea>
+
+  <br /><br />
+
+  <button type="submit" [disabled]="!bio.trim()" style="padding: 0.5rem 1rem;">
+    Submit Request
+  </button>
+</form>
+
+<p *ngIf="status" style="margin-top: 1rem;">{{ status }}</p>

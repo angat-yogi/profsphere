@@ -1,0 +1,18 @@
+<h2>Search Answers</h2>
+<input [(ngModel)]="searchQuery" (input)="search()" placeholder="Search past answers..." />
+
+<div *ngIf="results.length > 0">
+  <h3>Matching Answers</h3>
+  <ul>
+    <li *ngFor="let r of results">{{ r }}</li>
+  </ul>
+</div>
+
+<div *ngIf="results.length === 0 && searchQuery">
+  <h3>No matches found</h3>
+  <p>Ask your question to:</p>
+  <button (click)="askAI()">Ask Expert AI</button>
+  <button *ngFor="let expert of subscribedExperts" (click)="askExpert(expert)">
+    Ask {{ expert }}
+  </button>
+</div>

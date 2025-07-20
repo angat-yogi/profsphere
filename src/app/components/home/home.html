@@ -1,0 +1,14 @@
+<div class="home-container">
+    <div class="search-box">
+      <input [(ngModel)]="search" placeholder="Search questions..." />
+      <button>🔍</button>
+    </div>
+  
+    <div class="feed-list">
+      <div class="feed-item" *ngFor="let feed of feeds">
+        <h3>{{ feed.title }}</h3>
+        <p>{{ feed.summary }}</p>
+      </div>
+      <p *ngIf="loading">Loading more...</p>
+    </div>
+  </div>

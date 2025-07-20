@@ -1,0 +1,23 @@
+<nav class="navbar">
+    <div class="navbar-left">
+      <a class="logo" routerLink="/">ProfSphere</a>
+      <a routerLink="/ask">Ask Anything</a>
+      <a routerLink="/my-posts">My Posts</a>
+      <a routerLink="/request-expert">Become an Expert</a>
+    </div>
+  
+    <div class="navbar-right">
+      <div class="profile-section" (click)="toggleMenu()">
+        <span class="burger-icon">☰</span>
+      </div>
+  
+      <div *ngIf="showMenu" class="dropdown-menu">
+        <div *ngIf="user$ | async as user">
+          <p><strong>{{ user.name }}</strong></p>
+          <p>{{ user.email }}</p>
+          <hr />
+        </div>
+        <button (click)="logout()">Sign Out</button>
+      </div>
+    </div>
+  </nav>

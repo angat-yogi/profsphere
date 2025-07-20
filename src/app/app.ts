@@ -1,13 +1,12 @@
 import { Component, inject, effect } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { RouterOutlet } from '@angular/router';
-import { AuthButton } from './components/auth-button/auth-button';
-import { UserProfile } from './components/user-profile/user-profile';
+import { Navbar } from './components/navbar/navbar';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, AuthButton, UserProfile],
+  imports: [RouterOutlet,Navbar],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
