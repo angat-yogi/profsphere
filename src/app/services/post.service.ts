@@ -5,7 +5,7 @@ import { Storage, ref, uploadBytes, getDownloadURL } from '@angular/fire/storage
 import { Post } from '../models/post';
 import { Timestamp } from 'firebase/firestore';
 import { collectionData } from 'rxfire/firestore';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class PostService {
@@ -51,6 +51,14 @@ export class PostService {
       where('authorId', '==', userId),
       orderBy('createdAt', 'desc')
     );
-    return collectionData(q, { idField: 'id' }) as Observable<Post[]>;
+  
+    return collectionData(q, { idField: 'id' }).pipe(
+      map((posts: any[]) =>
+        posts.map(post => ({
+          ...post,
+          createdAt: post.createdAt?.toDate?.() ?? new Date()
+        }))
+      )
+    );
   }
 }

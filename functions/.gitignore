@@ -8,3 +8,10 @@ typings/
 # Node.js dependency directory
 node_modules/
 *.local
+
+.env
+.env.local
+
+# .gitignore
+src/environments/environment.ts
+src/environments/firebase.config.ts

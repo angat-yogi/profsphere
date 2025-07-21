@@ -1,3 +1,3 @@
 export const environment = {
-    openaiApiKey: "sk-1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
+    openaiApiKey: "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",
 }

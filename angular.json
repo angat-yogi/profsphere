@@ -11,16 +11,19 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular/build:application",
-   "options": {
-  "browser": "src/main.ts",
+          "builder": "@ngx-env/builder:browser",
+"options": {
+  "outputPath": "dist/profsphere",
+  "index": "src/index.html",
+  "main": "src/main.ts",
   "polyfills": ["zone.js"],
   "tsConfig": "tsconfig.app.json",
-  "assets": [{ "glob": "**/*", "input": "public" }],
+  "assets": [{ "glob": "**/*", "input": "public", "output": "/" }],
   "styles": [
     "src/custom-theme.scss",
     "src/styles.css"
-  ]
+  ],
+  "scripts": []
 },
           "configurations": {
             "production": {
